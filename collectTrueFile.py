@@ -1,5 +1,6 @@
 import os
 import shutil
+from dict import *
 
 data_seq = [1, 2, 3, 4, 5]
 cm_seq = [1, 2]
@@ -24,16 +25,16 @@ for data_key in data_seq:
                 for wallet_key in wd_seq:
                     wallet_type = wallet_distribution_type_dict[wallet_key]
 
-                    r = new_dataset_name + '\t' + cascade_model + '\t' + \
-                        wallet_distribution_type + '\t' + new_product_name + '\t' + str(bi)
+                    r = data_name + '\t' + cm_name + '\t' + wallet_type + '\t' + prod_name + '\t' + str(bi)
                     print(r)
-                    for model_name in model_seq:
+                    for mn_list in model_seq:
+                        model_name = get_model_name(mn_list)
                         d = {}
                         for times in range(10):
                             try:
                                 result_name = 'result/' + \
-                                              new_dataset_name + '_' + cascade_model + '/' + \
-                                              wallet_distribution_type + '_' + new_product_name + '_bi' + str(bi) + '/' + \
+                                              data_name + '_' + cm_name + '/' + \
+                                              wallet_type + '_' + prod_name + '_bi' + str(bi) + '/' + \
                                               model_name + '_' + str(times) + '.txt'
 
                                 with open(result_name) as f:
@@ -69,13 +70,13 @@ for data_key in data_seq:
 
                         try:
                             src_name = 'result/' + \
-                                       new_dataset_name + '_' + cascade_model + '/' + \
-                                       wallet_distribution_type + '_' + new_product_name + '_bi' + str(bi) + '/' + \
+                                       data_name + '_' + cm_name + '/' + \
+                                       wallet_type + '_' + prod_name + '_bi' + str(bi) + '/' + \
                                        model_name + '_' + str(chosen_index) + '.txt'
-                            path0 = 'resultT/' + new_dataset_name + '_' + cascade_model
+                            path0 = 'resultT/' + data_name + '_' + cm_name
                             if not os.path.isdir(path0):
                                 os.mkdir(path0)
-                            path = path0 + '/' + wallet_distribution_type + '_' + new_product_name + '_bi' + str(bi)
+                            path = path0 + '/' + wallet_type + '_' + prod_name + '_bi' + str(bi)
                             if not os.path.isdir(path):
                                 os.mkdir(path)
                             dst_name = path + '/' + model_name + '.txt'
@@ -84,7 +85,7 @@ for data_key in data_seq:
                             with open(src_name) as f:
                                 for line in f:
                                     r.append(line)
-                            r[0] = new_dataset_name + '_' + cascade_model + '\t' + model_name.split('_')[0] + '\t' + wallet_distribution_type + '_' + new_product_name + '_bi' + str(bi) + '\n'
+                            r[0] = data_name + '_' + cm_name + '\t' + model_name.split('_')[0] + '\t' + wallet_type + '_' + prod_name + '_bi' + str(bi) + '\n'
                             f.close()
                             fw = open(dst_name, 'w')
                             for line in r:
@@ -92,13 +93,13 @@ for data_key in data_seq:
                             fw.close()
 
                             src_name = 'seed_data/' + \
-                                       new_dataset_name + '_' + cascade_model + '/' + \
-                                       wallet_distribution_type + '_' + new_product_name + '_bi' + str(bi) + '/' + \
+                                       data_name + '_' + cm_name + '/' + \
+                                       wallet_type + '_' + prod_name + '_bi' + str(bi) + '/' + \
                                        model_name + '_' + str(chosen_index) + '.txt'
-                            path0 = 'seed_dataT/' + new_dataset_name + '_' + cascade_model
+                            path0 = 'seed_dataT/' + data_name + '_' + cm_name
                             if not os.path.isdir(path0):
                                 os.mkdir(path0)
-                            path = path0 + '/' + wallet_distribution_type + '_' + new_product_name + '_bi' + str(bi)
+                            path = path0 + '/' + wallet_type + '_' + prod_name + '_bi' + str(bi)
                             if not os.path.isdir(path):
                                 os.mkdir(path)
                             dst_name = path + '/' + model_name + '.txt'
