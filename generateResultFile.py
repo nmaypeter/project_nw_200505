@@ -28,15 +28,14 @@ for data_key in data_seq:
                     profit_max, profit_mean, profit_min, time_max, time_mean, time_min = [], [], [], [], [], []
                     profit_max_dict, profit_mean_dict, profit_min_dict = {model_name: '' for model_name in model_seq}, {model_name: '' for model_name in model_seq}, {model_name: '' for model_name in model_seq}
                     time_max_dict, time_mean_dict, time_min_dict = {model_name: '' for model_name in model_seq}, {model_name: '' for model_name in model_seq}, {model_name: '' for model_name in model_seq}
-                    r = new_dataset_name + '\t' + cascade_model + '\t' + \
-                        wallet_distribution_type + '\t' + new_product_name + '\t' + str(bi)
+                    r = data_name + '\t' + cm_name + '\t' + wallet_type + '\t' + prod_name + '\t' + str(bi)
                     print(r)
                     for mn_list in model_seq:
+                        model_name = get_model_name(mn_list)
                         for times in range(10):
-                            model_name = get_model_name(mn_list)
                             try:
                                 result_name = 'result/' + \
-                                              data_name + '_' + cas_name + '/' + \
+                                              data_name + '_' + cm_name + '/' + \
                                               wallet_type + '_' + prod_name + '_bi' + str(bi) + '/' + \
                                               model_name + '_' + str(times) + '.txt'
 
@@ -96,36 +95,36 @@ for data_key in data_seq:
 
         result_path = 'result/profit_max.xlsx'
         wb = xw.Book(result_path)
-        sheet_name = new_dataset_name + '_' + cascade_model
+        sheet_name = data_name + '_' + cm_name
         sheet = wb.sheets[sheet_name]
         sheet.cells(7, "C").value = profit_max_list
 
         result_path = 'result/profit_mean.xlsx'
         wb = xw.Book(result_path)
-        sheet_name = new_dataset_name + '_' + cascade_model
+        sheet_name = data_name + '_' + cm_name
         sheet = wb.sheets[sheet_name]
         sheet.cells(7, "C").value = profit_mean_list
 
         result_path = 'result/profit_min.xlsx'
         wb = xw.Book(result_path)
-        sheet_name = new_dataset_name + '_' + cascade_model
+        sheet_name = data_name + '_' + cm_name
         sheet = wb.sheets[sheet_name]
         sheet.cells(7, "C").value = profit_min_list
 
         result_path = 'result/time_max.xlsx'
         wb = xw.Book(result_path)
-        sheet_name = new_dataset_name + '_' + cascade_model
+        sheet_name = data_name + '_' + cm_name
         sheet = wb.sheets[sheet_name]
         sheet.cells(7, "C").value = time_max_list
 
         result_path = 'result/time_mean.xlsx'
         wb = xw.Book(result_path)
-        sheet_name = new_dataset_name + '_' + cascade_model
+        sheet_name = data_name + '_' + cm_name
         sheet = wb.sheets[sheet_name]
         sheet.cells(7, "C").value = time_mean_list
 
         result_path = 'result/time_min.xlsx'
         wb = xw.Book(result_path)
-        sheet_name = new_dataset_name + '_' + cascade_model
+        sheet_name = data_name + '_' + cm_name
         sheet = wb.sheets[sheet_name]
         sheet.cells(7, "C").value = time_min_list
