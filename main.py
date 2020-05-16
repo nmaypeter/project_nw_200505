@@ -34,16 +34,16 @@ if __name__ == '__main__':
 
                 for times in range(10):
 
-                    Model([5, 0, 0], data_key, prod_key, cas_key).model_ng()
-                    Model([5, 1, 0], data_key, prod_key, cas_key).model_ng()
-                    Model([6, 0, 0], data_key, prod_key, cas_key).model_hd()
-                    Model([7, 0, 0], data_key, prod_key, cas_key).model_r()
-                    Model([8, 0, 0], data_key, prod_key, cas_key).model_pmis()
-                    Model([9, 0, 0], data_key, prod_key, cas_key).model_bcs()
+                    Model([5, 0, 0, times], data_key, prod_key, cas_key).model_ng()
+                    Model([5, 1, 0, times], data_key, prod_key, cas_key).model_ng()
+                    Model([6, 0, 0, times], data_key, prod_key, cas_key).model_hd()
+                    Model([7, 0, 0, times], data_key, prod_key, cas_key).model_r()
+                    Model([8, 0, 0, times], data_key, prod_key, cas_key).model_pmis()
+                    Model([9, 0, 0, times], data_key, prod_key, cas_key).model_bcs()
 
                     for wallet_key in wd_seq:
 
-                        Model([5, 0, 1], data_key, prod_key, cas_key, wallet_key).model_ng()
-                        Model([5, 1, 1], data_key, prod_key, cas_key, wallet_key).model_ng()
-                        Model([8, 0, 1], data_key, prod_key, cas_key, wallet_key).model_pmis()
-                        Model([9, 1, 1], data_key, prod_key, cas_key, wallet_key).model_bcs()
+                        Model([5, 0, 1, times], data_key, prod_key, cas_key, wallet_key).model_ng()
+                        Model([5, 1, 1, times], data_key, prod_key, cas_key, wallet_key).model_ng()
+                        Model([8, 0, 1, times], data_key, prod_key, cas_key, wallet_key).model_pmis()
+                        Model([9, 1, 1, times], data_key, prod_key, cas_key, wallet_key).model_bcs()
