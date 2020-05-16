@@ -7,6 +7,8 @@ model_dict = {
 
 def get_model_name(mn_list):
     model_name = 'm' + model_dict['method'][mn_list[0]] + model_dict['r'][mn_list[1]] + model_dict['epw'][mn_list[2]]
+    if len(mn_list) > 3:
+        model_name += '_' + str(mn_list[-1])
 
     return model_name
 
