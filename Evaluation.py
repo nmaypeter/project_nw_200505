@@ -72,7 +72,7 @@ class EvaluationM:
         self.data_key = data_key
         self.prod_key = prod_key
         self.cas_key = cas_key
-        self.times = 10 if 'dag' in mn_list or 'spbp' in mn_list else 1
+        self.times = 10 if 'dag' in self.model_name or 'spbp' in self.model_name else 1
 
     def evaluate(self, bi, wallet_key, sample_seed_set, ss_time):
         eva_start_time = time.time()
@@ -115,11 +115,11 @@ class EvaluationM:
             path = path0 + '/' + wallet_distribution_type_dict[wallet_key] + '_' + self.prod_name + '_bi' + str(bi)
             if not os.path.isdir(path):
                 os.mkdir(path)
-            result_name = path + '/' + self.model_name + '.txt'
+            result_name = path + '/' + model_name + '.txt'
 
             fw = open(result_name, 'w')
             fw.write(self.data_name + '_' + self.cas_name + '\t' +
-                     self.model_name + '\t' +
+                     model_name + '\t' +
                      wallet_distribution_type_dict[wallet_key] + '_' + self.prod_name + '_bi' + str(bi) + '\n' +
                      'budget_limit = ' + str(total_budget) + '\n' +
                      'time = ' + str(ss_time) + '\n\n' +
