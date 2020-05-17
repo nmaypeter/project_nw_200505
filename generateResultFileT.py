@@ -41,7 +41,7 @@ for data_key in data_seq:
                             result_name = 'resultT/' + \
                                           data_name + '_' + cm_name + '/' + \
                                           wallet_type + '_' + prod_name + '_bi' + str(bi) + '/' + \
-                                          model_name + '_' + str(times) + '.txt'
+                                          model_name + '.txt'
 
                             with open(result_name) as f:
                                 p = 0.0
